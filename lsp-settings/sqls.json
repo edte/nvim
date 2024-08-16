@@ -1,0 +1,10 @@
+{
+  "sqls": {
+    "connections": [
+      {
+        "driver": "mysql",
+        "dataSourceName": "root:local@tcp(localhost:3306)/test"
+      }, 
+    ]
+  }
+}
