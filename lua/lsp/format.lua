@@ -49,7 +49,8 @@ function M.formatConfig()
 					buffer = bufnr,
 					callback = function()
 						vim.lsp.buf.format({
-							async = true,
+							-- async = true,
+							timeout_ms = 100,
 							filter = function(client)
 								return client.name ~= "clangd"
 							end,
