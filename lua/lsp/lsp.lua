@@ -177,13 +177,6 @@ M.lspConfig = function()
 		},
 	})
 
-	local clangd = try_require("clangd_extensions")
-	if clangd == nil then
-		return
-	end
-
-	clangd.setup()
-
 	-- https://github.com/wlh320/rime-ls
 	-- https://github.com/liubianshi/cmp-lsp-rimels
 	-- rime 输入法

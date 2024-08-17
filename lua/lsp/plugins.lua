@@ -67,17 +67,24 @@ M.list = {
 	},
 
 	-- 键入时出现 LSP 签名提示
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "bufread",
-		config = function()
-			try_require("lsp_signature").on_attach()
-		end,
-	},
+	-- {
+	--   "ray-x/lsp_signature.nvim",
+	--   event = "bufread",
+	--   config = function()
+	--     try_require("lsp_signature").on_attach()
+	--   end,
+	-- },
 	-- Clanalphagd 针对 neovim 的 LSP 客户端的不合规范的功能。使用 https://sr.ht/~p00f/clangd_extensions.nvim 代替
 	{
 		"p00f/clangd_extensions.nvim",
 		ft = { "cpp", "h" },
+		config = function()
+			local clangd = try_require("clangd_extensions")
+			if clangd == nil then
+				return
+			end
+			clangd.setup()
+		end,
 	},
 
 	-- jce 高亮
@@ -325,17 +332,6 @@ M.list = {
 			--   desc = "[T]est [C]ancel Current Run",
 			-- },
 		},
-	},
-
-	{
-		"amitds1997/remote-nvim.nvim",
-		version = "*", -- Pin to GitHub releases
-		dependencies = {
-			"nvim-lua/plenary.nvim", -- For standard functions
-			"MunifTanjim/nui.nvim", -- To build the plugin UI
-			"nvim-telescope/telescope.nvim", -- For picking b/w different remote methods
-		},
-		config = true,
 	},
 
 	-- 一个漂亮的窗口，用于在一个地方预览、导航和编辑 LSP 位置，其灵感来自于 vscode 的 peek 预览。
