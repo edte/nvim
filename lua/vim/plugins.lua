@@ -361,6 +361,19 @@ M.list = {
   -- {
   --   "jbyuki/venn.nvim",
   -- },
+
+  -- Neovim 的小型自动化会话管理器
+  {
+    "rmagatti/auto-session",
+    event = { "SessionSave", "SessionRestore", "SessionDelete", "SessionToggleAutoSave", "SessionSearch" },
+    dependencies = {
+      "nvim-telescope/telescope.nvim", -- Only needed if you want to use session lens
+    },
+    opts = {
+      auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      -- log_level = 'debug',
+    },
+  },
 }
 
 return M
