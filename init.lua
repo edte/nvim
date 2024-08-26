@@ -1,7 +1,7 @@
 require("util")
+require("cwd")
 require("options")
 require("autocmd")
 require("cmd")
 require("keymaps")
-require("cwd")
 require("lazys")

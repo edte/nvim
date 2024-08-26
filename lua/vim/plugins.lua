@@ -1,6 +1,26 @@
 local M = {}
 
 M.list = {
+	-- 状态列插件，提供可配置的“状态列”和单击处理程序。需要 Neovim >= 0.10。
+	-- statuscolumn
+	{
+		"luukvbaal/statuscol.nvim",
+		config = function()
+			local builtin = require("statuscol.builtin")
+			require("statuscol").setup({
+				-- relculright = true,
+				segments = {
+					-- 书签
+					{ sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = false } },
+					-- 行号
+					{ text = { builtin.lnumfunc } },
+					-- 折叠
+					{ text = { builtin.foldfunc } },
+				},
+			})
+		end,
+	},
+
 	-- 使用“.”启用重复支持的插件映射
 	{
 		"tpope/vim-repeat",
@@ -22,83 +42,9 @@ M.list = {
 	{
 		"kevinhwang91/nvim-ufo",
 		dependencies = "kevinhwang91/promise-async",
-		opts = {
-			-- INFO: Uncomment to use treeitter as fold provider, otherwise nvim lsp is used
-			-- provider_selector = function(bufnr, filetype, buftype)
-			--   return { "treesitter", "indent" }
-			-- end,
-			open_fold_hl_timeout = 400,
-			close_fold_kinds_for = { "imports", "comment" },
-			preview = {
-				win_config = {
-					border = { "", "─", "", "", "", "─", "", "" },
-					-- winhighlight = "Normal:Folded",
-					winblend = 0,
-				},
-				mappings = {
-					scrollU = "<C-u>",
-					scrollD = "<C-d>",
-					jumpTop = "[",
-					jumpBot = "]",
-				},
-			},
-		},
-		init = function()
-			vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:>]]
-			vim.o.foldcolumn = "auto:9"
-			vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-			vim.o.foldlevelstart = 99
-			vim.o.foldenable = true
-		end,
-		config = function(_, opts)
-			local handler = function(virtText, lnum, endLnum, width, truncate)
-				local newVirtText = {}
-				local totalLines = vim.api.nvim_buf_line_count(0)
-				local foldedLines = endLnum - lnum
-				local suffix = (" 󰁂 %d "):format(endLnum - lnum)
-				local sufWidth = vim.fn.strdisplaywidth(suffix)
-				local targetWidth = width - sufWidth
-				local curWidth = 0
-				for _, chunk in ipairs(virtText) do
-					local chunkText = chunk[1]
-					local chunkWidth = vim.fn.strdisplaywidth(chunkText)
-					if targetWidth > curWidth + chunkWidth then
-						table.insert(newVirtText, chunk)
-					else
-						chunkText = truncate(chunkText, targetWidth - curWidth)
-						local hlGroup = chunk[2]
-						table.insert(newVirtText, { chunkText, hlGroup })
-						chunkWidth = vim.fn.strdisplaywidth(chunkText)
-						-- str width returned from truncate() may less than 2nd argument, need padding
-						if curWidth + chunkWidth < targetWidth then
-							suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
-						end
-						break
-					end
-					curWidth = curWidth + chunkWidth
-				end
-				local rAlignAppndx =
-					math.max(math.min(vim.api.nvim_win_get_width(0), width - 1) - curWidth - sufWidth, 0)
-				suffix = (" "):rep(rAlignAppndx) .. suffix
-				table.insert(newVirtText, { suffix, "MoreMsg" })
-				return newVirtText
-			end
-			opts["fold_virt_text_handler"] = handler
-			require("ufo").setup(opts)
-			vim.keymap.set("n", "zr", require("ufo").openAllFolds)
-			vim.keymap.set("n", "zm", require("ufo").closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
-
-			vim.cmd([[set viewoptions-=curdir]])
-
-			-- remember folds
-			vim.cmd([[
-        augroup remember_folds
-        autocmd!
-        autocmd BufWinLeave *.* mkview
-        autocmd BufWinEnter *.* silent! loadview
-        augroup END
-        ]])
-		end,
+		opts = require("vim.fold").Opts,
+		init = require("vim.fold").init,
+		config = require("vim.fold").config,
 	},
 
 	-- Neovim 的 30 多个新文本对象捆绑包。

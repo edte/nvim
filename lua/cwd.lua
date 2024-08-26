@@ -169,6 +169,8 @@ local function setup(opts)
 	rooter_default()
 end
 
+setup()
+
 return {
 	setup = setup,
 	rooter_default = rooter_default,
