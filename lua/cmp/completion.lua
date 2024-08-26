@@ -188,6 +188,10 @@ function M.cmpConfig()
         name = "nvim_lsp",
         priority = 8,
       },
+      -- sources = {
+      --   { name = "supermaven" },
+      --   priority = 8,
+      -- },
       -- {
       -- 	name = "nvim_lsp_signature_help",
       -- 	priority = 8,
