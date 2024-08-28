@@ -67,7 +67,7 @@ end, { expr = true })
 
 keymap("n", "<bs>", "<C-^>")
 keymap("", "gI", ":Glance implementations<cr>")
-keymap("", "gd", "<cmd>Telescope lsp_definitions<cr>")
+keymap("", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
 keymap("", "gD", "<cmd>FzfLua lsp_declarations<cr>")
 keymap("", "gr", "<cmd>Glance references<cr>")
 keymap("n", "gh", "<CMD>ClangdSwitchSourceHeader<CR>")

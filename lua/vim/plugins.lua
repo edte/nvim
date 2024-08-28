@@ -1,25 +1,6 @@
 local M = {}
 
 M.list = {
-  -- 状态列插件，提供可配置的“状态列”和单击处理程序。需要 Neovim >= 0.10。
-  -- statuscolumn
-  {
-    "luukvbaal/statuscol.nvim",
-    config = function()
-      local builtin = require("statuscol.builtin")
-      require("statuscol").setup({
-        -- relculright = true,
-        segments = {
-          -- 书签
-          { sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = false } },
-          -- 行号
-          { text = { builtin.lnumfunc } },
-          -- 折叠
-          { text = { builtin.foldfunc } },
-        },
-      })
-    end,
-  },
 
   -- 使用“.”启用重复支持的插件映射
   {

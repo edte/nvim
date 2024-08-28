@@ -88,6 +88,8 @@ M.list = {
       vim.api.nvim_create_user_command("Toggle", function()
         tsj.toggle({ split = { recursive = true } })
       end, {})
+      -- print("jm")
+      -- keymap("n", "gj", "<cmd>Toggle<CR>")
     end,
   },
 

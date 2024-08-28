@@ -2,76 +2,94 @@ local M = {}
 
 M.list = {
   {
-    "hrsh7th/nvim-cmp",
+    "yioneko/nvim-cmp",
+    branch = "perf",
     config = function()
       require("cmp.completion").cmpConfig()
     end,
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter" },
+    lazy = true,
     dependencies = {
-      "cmp-nvim-lsp",
-      "cmp_luasnip",
-      "cmp-buffer",
-      -- "cmp-path",
+      {
+        "cmp-nvim-lsp",
+        event = { "InsertEnter" },
+      },
+      {
+        "cmp_luasnip",
+        event = { "InsertEnter" },
+      },
+      -- {
+      --   "cmp-buffer",
+      --   event = { "InsertEnter" },
+      -- },
       {
         url = "https://codeberg.org/FelipeLema/cmp-async-path",
+        event = { "InsertEnter" },
       },
       "hrsh7th/cmp-nvim-lsp-signature-help",
       -- "cmp-cmdline",
       -- 上下文语法补全
       {
         "ray-x/cmp-treesitter",
+        event = { "InsertEnter" },
       },
       {
         "lukas-reineke/cmp-rg",
+        event = { "InsertEnter" },
         lazy = true,
         enabled = function()
           return vim.fn.executable("rg") == 1
         end,
       },
-      "Snikimonkd/cmp-go-pkgs",
+      {
+        "Snikimonkd/cmp-go-pkgs",
+        event = { "InsertEnter" },
+        ft = { "go" },
+      },
       -- TabNine ai 补全
       {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
-        dependencies = "hrsh7th/nvim-cmp",
         ft = { "lua", "go", "cpp" },
+        event = { "InsertEnter" },
       },
 
       -- 单词补全
       {
         "uga-rosa/cmp-dictionary",
-        event = "BufRead",
+        event = { "InsertEnter" },
       },
 
       -- 计算器
-      {
-        "hrsh7th/cmp-calc",
-        event = "BufRead",
-      },
+      -- {
+      --   "hrsh7th/cmp-calc",
+      --   event = { "InsertEnter" },
+      -- },
 
-      -- nvim-cmp 表情符号源
+      --  表情符号源
       -- : 冒号触发
-      {
-        "hrsh7th/cmp-emoji",
-        event = "BufRead",
-      },
+      -- {
+      --   "hrsh7th/cmp-emoji",
+      --   event = { "InsertEnter" },
+      -- },
 
-      -- nvim lua 的 nvim-cmp 源
+      -- nvim lua  源
       {
         "hrsh7th/cmp-nvim-lua",
-        event = "BufRead",
+        event = { "InsertEnter" },
+        ft = { "lua" },
       },
 
-      {
-        "tzachar/cmp-fuzzy-path",
-        event = "BufRead",
-        dependencies = { "tzachar/fuzzy.nvim" },
-      },
-      {
-        "tzachar/cmp-fuzzy-buffer",
-        event = "BufRead",
-        dependencies = { "tzachar/fuzzy.nvim" },
-      },
+      -- {
+      --   "tzachar/cmp-fuzzy-path",
+      --   event = { "InsertEnter" },
+      --   dependencies = { "tzachar/fuzzy.nvim" },
+      -- },
+      -- {
+      --   "tzachar/cmp-fuzzy-buffer",
+      --   event = { "InsertEnter" },
+      --   dependencies = { "tzachar/fuzzy.nvim" },
+      -- },
     },
   },
   {
@@ -85,9 +103,10 @@ M.list = {
   {
     "folke/neodev.nvim",
     lazy = true,
+    event = { "InsertEnter" },
   },
 
-  -- 一个 Neovim 插件，用于将 vscode 风格的 TailwindCSS 补全添加到 nvim-cmp
+  -- 一个 Neovim 插件，用于将 vscode 风格的 TailwindCSS 补全添加到cmp
   -- {
   -- 	"roobert/tailwindcss-colorizer-cmp.nvim",
   -- 	event = "VeryLazy",
@@ -103,21 +122,16 @@ M.list = {
   -- 	end,
   -- },
 
-  -- nvim-cmp 的一个小函数，可以更好地对以一个或多个下划线开头的完成项进行排序。
+  -- cmp 的一个小函数，可以更好地对以一个或多个下划线开头的完成项进行排序。
   -- 在大多数语言中，尤其是 Python，以一个或多个下划线开头的项目应位于完成建议的末尾。
   -- { "lukas-reineke/cmp-under-comparator" },
-
-  -- nvim-cmp 源代码用于显示强调当前参数的函数签名：
-  -- {
-  -- 	"hrsh7th/cmp-nvim-lsp-signature-help",
-  -- },
 
   -- {
   -- 	"hrsh7th/cmp-omni",
   -- 	event = "VeryLazy",
   -- },
 
-  -- -- nvim-cmp 的拼写源基于 vim 的拼写建议。
+  -- -- cmp 的拼写源基于 vim 的拼写建议。
   -- {
   -- 	"f3fora/cmp-spell",
   -- 	config = function()
@@ -136,18 +150,11 @@ M.list = {
   -- 	event = "VeryLazy",
   -- },
 
-  -- {
-  -- 	"hrsh7th/nvim-cmp",
-  -- 	dependencies = { "tzachar/cmp-ai" },
-  -- },
-
   -- lsp 输入法
   -- {
   -- 	"liubianshi/cmp-lsp-rimels",
   -- 	dependencies = {
   -- 		"neovim/nvim-lspconfig",
-  -- 		"hrsh7th/nvim-cmp",
-  -- 		"hrsh7th/cmp-nvim-lsp",
   -- 	},
   -- 	config = function()
   -- 		require("rimels").setup({
@@ -159,7 +166,7 @@ M.list = {
   -- 语言字典补全
   {
     "skywind3000/vim-dict",
-    event = "VeryLazy",
+    event = { "InsertEnter" },
   },
 
   {
@@ -173,7 +180,7 @@ M.list = {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = true,
-    dependencies = { "nvim-treesitter/nvim-treesitter", "hrsh7th/nvim-cmp" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 
   -- {

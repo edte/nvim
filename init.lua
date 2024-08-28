@@ -1,3 +1,4 @@
+-- require("mini")
 require("util")
 require("cwd")
 require("options")

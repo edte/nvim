@@ -19,14 +19,14 @@ vim.opt.rtp:prepend(lazypath)
 
 local modules = {
   "base.plugins",
-  "ui.plugins",
-  "bookmark.plugins",
+  -- "ui.plugins",
+  -- "bookmark.plugins",
   "vim.plugins",
-  "text.plugins",
-  "cmp.plugins",
-  "lsp.plugins",
-  "git.plugins",
-  "components.plugins",
+  -- "text.plugins",
+  -- "cmp.plugins",
+  -- "lsp.plugins",
+  -- "git.plugins",
+  -- "components.plugins",
 }
 
 local plugins_list = {}

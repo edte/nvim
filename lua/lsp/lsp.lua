@@ -82,6 +82,14 @@ M.lspConfig = function()
 				},
 			},
 		},
+		handlers = {
+			["textDocument/definition"] = function(err, result, ctx, config)
+				if type(result) == "table" then
+					result = { result[1] }
+				end
+				vim.lsp.handlers["textDocument/definition"](err, result, ctx, config)
+			end,
+		},
 		on_attach = M.on_attach,
 	})
 
