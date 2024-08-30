@@ -36,9 +36,6 @@ M.config = function()
 		[[   █   █  █      ▄▄           ▄▀   ]],
 	}
 
-	local builtin = require("telescope.builtin")
-	local utils = require("telescope.utils")
-
 	dashboard.section.buttons.opts.spacing = 1
 	dashboard.section.buttons.opts.hl_shortcut = "Include"
 	dashboard.section.buttons.type = "group"

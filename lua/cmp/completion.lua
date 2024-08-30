@@ -167,10 +167,6 @@ function M.cmpConfig()
 
 		sources = {
 			{
-				name = "nvim_lsp:rimels",
-				priority = 8,
-			},
-			{
 				name = "cmp_tabnine",
 				priority = 8,
 			},
@@ -179,27 +175,10 @@ function M.cmpConfig()
 				name = "nvim_lsp_signature_help",
 				priority = 8,
 			},
-			-- {
-			-- 	name = "copilot",
-			-- 	group_index = 2,
-			-- 	priority = 8,
-			-- },
-			-- {
-			-- 	name = "cmp_ai",
-			-- 	priority = 8,
-			-- },
 			{
 				name = "nvim_lsp",
 				priority = 8,
 			},
-			-- sources = {
-			--   { name = "supermaven" },
-			--   priority = 8,
-			-- },
-			-- {
-			-- 	name = "nvim_lsp_signature_help",
-			-- 	priority = 8,
-			-- },
 			{
 				name = "luasnip",
 				priority = 7,
@@ -237,35 +216,10 @@ function M.cmpConfig()
 				priority = 6,
 			},
 
-			-- {
-			-- 	priority = 6,
-			-- 	name = "tailwindcss-colorizer-cmp",
-			-- },
-
-			-- {
-			-- 	name = "spell",
-			-- 	priority = 6,
-			-- 	keyword_length = 3,
-			-- 	keyword_pattern = [[\w\+]],
-			-- 	option = {
-			-- 		keep_all_entries = false,
-			-- 		enable_in_context = function()
-			-- 			return true
-			-- 		end,
-			-- 	},
-			-- },
 			{
 				name = "nvim_lua",
 				priority = 5,
 			},
-			-- {
-			-- 	name = "fuzzy_path",
-			-- 	priority = 4,
-			-- },
-			-- {
-			-- 	name = "fuzzy_buffer",
-			-- 	priority = 4,
-			-- },
 			{
 				name = "async_path",
 				priority = 4,
@@ -289,27 +243,6 @@ function M.cmpConfig()
 				priority = 4,
 				group_index = 3,
 			},
-			-- {
-			--     name = 'tmux',
-			--     priority = 4
-			-- },
-			-- {
-			--     name = "git",
-			--     priority = 4
-			-- },
-			--
-			-- {
-			-- 	name = "omni",
-			-- 	option = {
-			-- 		disable_omnifuncs = { "v:lua.vim.lsp.omnifunc" },
-			-- 		priority = 4,
-			-- 	},
-			-- },
-			-- {
-			-- 	name = "fittencode",
-			-- 	group_index = 1,
-			-- 	priority = 4,
-			-- },
 		},
 
 		-- cmp 补全的顺序
@@ -359,18 +292,6 @@ function M.cmpConfig()
 		},
 	})
 
-	-- 其他设置
-
-	-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	-- 	underline = true,
-	-- 	virtual_text = {
-	-- 		spacing = 5,
-	-- 		{ min = "Warning" },
-	-- 		-- severity_limit = "Warning",
-	-- 	},
-	-- 	update_in_insert = true,
-	-- })
-
 	-- tabline 设置，一个ai补全的
 	local tabnine = try_require("cmp_tabnine.config")
 	if tabnine == nil then
@@ -419,27 +340,6 @@ function M.cmpConfig()
 			})
 		end,
 	})
-
-	--
-	-- try_require("cmp_git").setup()
-
-	-- openai
-	-- local cmp_ai = try_require('cmp_ai.config')
-
-	-- cmp_ai:setup({
-	--     max_lines = 1000,
-	--     provider = 'HF',
-	--     notify = true,
-	--     notify_callback = function(msg)
-	--         vim.notify(msg)
-	--     end,
-	--     run_on_every_keystroke = true,
-	--     ignored_file_types = {
-	--         -- default is not to ignore
-	--         -- uncomment to ignore in lua:
-	--         -- lua = true
-	--     },
-	-- })
 end
 
 return M

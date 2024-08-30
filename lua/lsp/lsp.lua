@@ -184,56 +184,6 @@ M.lspConfig = function()
 			fallback_flags = { "-std=c++17" },
 		},
 	})
-
-	-- https://github.com/wlh320/rime-ls
-	-- https://github.com/liubianshi/cmp-lsp-rimels
-	-- rime 输入法
-
-	local rime_on_attach = function(client, _)
-		require("cmp.rime").create_command_toggle_rime(client)
-	end
-
-	-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-	if status_ok then
-		capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
-	end
-
-	local configs = require("lspconfig.configs")
-	if not configs.rimels then
-		configs.rimels = {
-			default_config = {
-				cmd = { "rime_ls" },
-				-- root_dir = require("lspconfig.util").root_pattern ".git",
-				root_dir = function()
-					return vim.fn.expand("~/.local/share/rime-data")
-				end,
-				filetypes = { "*" },
-				on_attach = rime_on_attach,
-				capabilities = capabilities,
-				init_options = {
-					enabled = true,
-					shared_data_dir = vim.fn.expand("~/Library/Rime"),
-					user_data_dir = vim.fn.expand("~/.local/share/rime-data"),
-					log_dir = vim.fn.expand("~/.local/share/rime-lsp"),
-					max_candidates = 10, -- [v0.2.0 后不再有用] 与 rime 的候选数量配置最好保持一致
-					paging_characters = { "-", "=" }, -- [since v0.2.4] 这些字符会强制触发一次补全，可用于翻页 见 issue #13
-					trigger_characters = {}, -- 为空表示全局开启
-					schema_trigger_character = "&", -- [since v0.2.0] 当输入此字符串时请求补全会触发 “方案选单”
-					always_incomplete = false, -- [since v0.2.3] true 强制补全永远刷新整个列表，而不是使用过滤
-					max_tokens = 0, -- [since v0.2.3] 大于 0 表示会在删除到这个字符个数的时候，重建所有候选词，而不使用删除字符操作
-					preselect_first = true, -- [since v0.2.3] 是否默认第一个候选项是选中状态，default false
-				},
-			},
-		}
-	end
-
-	local rime_ls_enabled = true
-	if vim.fn.executable("rime_ls") ~= 0 and rime_ls_enabled then
-		-- 启用 rimels
-		lspconfig.rimels.setup({})
-	end
 end
 
 M.on_attach = function(client, buf)

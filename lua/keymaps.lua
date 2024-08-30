@@ -4,12 +4,15 @@
 vim.keymap.del("", "grr", {})
 vim.keymap.del("", "gra", {})
 vim.keymap.del("", "grn", {})
+vim.keymap.del("", "gcc", {})
 
 -- vim.cmd("nmap <tab> %")
 
 keymap("n", "}", "}w")
 keymap("n", "}", "}j")
 cmd("nnoremap <expr><silent> { (col('.')==1 && len(getline(line('.')-1))==0? '2{j' : '{j')")
+
+keymap("n", "K", '<cmd>lua require("treesj").toggle({ split = { recursive = false } })<CR>')
 
 -- -- 上下滚动浏览
 keymap("", "<C-j>", "5j")
@@ -54,9 +57,6 @@ keymap("n", "U", "<c-r>")
 -- error 管理
 keymap("n", "<c-p>", "<cmd>lua vim.diagnostic.goto_prev()<cr>") -- pre error
 keymap("n", "<c-n>", "<cmd>lua vim.diagnostic.goto_next()<cr>") -- next error
-
--- 查看文档
--- keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
 
 -- 重命名
 -- keymap("n", "R", "<cmd>lua vim.lsp.buf.rename()<CR>")
@@ -117,3 +117,33 @@ keymap("n", "<up>", "<c-w>k")
 keymap("n", "<down>", "<c-w>j")
 keymap("", "<c-h>", "<c-w>h")
 keymap("", "<c-l>", "<c-w>l")
+
+-- kitty 终端区分 c-i 和 tab
+if vim.env.TERM == "xterm-kitty" then
+	vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+	vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+	vim.cmd("nnoremap <c-i> <c-i>")
+	vim.cmd("nnoremap <ESC>[105;5u <C-I>")
+	vim.cmd("nnoremap <Tab>        %")
+	vim.cmd("noremap  <ESC>[88;5u  :!echo B<CR>")
+	vim.cmd("noremap  <ESC>[49;5u  :!echo C<CR>")
+	vim.cmd("noremap  <ESC>[1;5P   :!echo D<CR>")
+end
+
+-- 交换 : ;
+
+cmd("nnoremap ; :")
+cmd("nnoremap : ;")
+
+cmd("inoremap ; :")
+cmd("inoremap : ;")
+
+cmd("nnoremap <Enter> o<ESC>") -- Insert New Line quickly
+-- cmd("nnoremap <Enter> %")
+
+cmd("xnoremap p P")
+
+cmd("silent!")
+
+-- cmd("nnoremap # *")
+-- cmd("nnoremap * #")

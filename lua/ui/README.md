@@ -16,7 +16,7 @@ signbar                                                                         
 |
 |
 
-                
+                                        whichkey                
 ----------------    ------------  statusline -----------------------     -----------------
 
 
@@ -28,7 +28,8 @@ signbar                                                                         
 6. nvim 主题
 7. symbol tree，符号树，主要用于显示函数符号，快速函数切换
 8. scrooltar，滚动条，显示git信息，错误信息等
-9. statusline，状态栏，显示项目名，文件名，行号，分支，lsp状态，filetype，时间等信息
+9. whichkey，快捷键提示
+10. statusline，状态栏，显示项目名，文件名，行号，分支，lsp状态，filetype，时间等信息
 
 
 
