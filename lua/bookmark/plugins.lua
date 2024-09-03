@@ -113,11 +113,12 @@ M.list = {
 		dependencies = {
 			"nvim-telescope/telescope.nvim", -- Only needed if you want to use session lens
 		},
-		opts = {
-			auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-		},
 		config = function()
 			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = { "~/", "~/Documents", "~/Projects", "~/Downloads", "/" },
+				auto_session_use_git_branch = true,
+				auto_save_enabled = true,
 				bypass_save_filetypes = { "alpha", "dashboard" }, -- or whatever dashboard you use
 			})
 		end,

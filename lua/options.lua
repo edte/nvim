@@ -1,13 +1,10 @@
 -- =================================================vim option settings=======================================================
--- 设置 vim 的剪切板与系统公用
-vim.opt.clipboard = "unnamedplus"
 
 vim.g.have_nerd_font = true
 
-vim.opt.mouse = "a"
-
-vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+vim.g.netrw_banner = 0
 
 --=================================================luvar_vim general settings==============================================================
 -- 日志等级
@@ -23,19 +20,11 @@ vim.g.maplocalleader = "\\"
 -- vim.opt.list = true
 -- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
-vim.o.hidden = true
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- -- 恢复上次会话
 -- vim.opt.sessionoptions = 'buffers,curdir,tabpages,winsize'
-
--- -- tab 的空格数
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-
-vim.o.scrolloff = 0
 
 vim.filetype.add({
 	extension = {
@@ -47,11 +36,6 @@ vim.filetype.add({
 		["[jt]sconfig.*.json"] = "jsonc",
 	},
 })
-
-vim.opt.spelllang:append("cjk") -- disable spellchecking for asian characters (VIM algorithm does not support it)
-vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
-vim.opt.shortmess:append("I") -- don't show the default intro message
-vim.opt.whichwrap:append("<,>,[,],h,l")
 
 local default_options = {
 	backup = false, -- creates a backup file
@@ -81,7 +65,7 @@ local default_options = {
 	updatetime = 100, -- faster completion
 	writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	expandtab = true, -- convert tabs to spaces
-	shiftwidth = 2, -- the number of spaces inserted for each indentation
+	shiftwidth = 4, -- the number of spaces inserted for each indentation
 	tabstop = 4, -- insert 2 spaces for a tab
 	cursorline = true, -- highlight the current line
 	number = true, -- set numbered lines
@@ -99,3 +83,32 @@ local default_options = {
 for k, v in pairs(default_options) do
 	vim.opt[k] = v
 end
+
+vim.opt.wildmode = "list:longest,list:full" -- for : stuff
+vim.opt.wildignore:append({ ".javac", "node_modules", "*.pyc" })
+vim.opt.wildignore:append({ ".aux", ".out", ".toc" }) -- LaTeX
+vim.opt.wildignore:append({
+	".o",
+	".obj",
+	".dll",
+	".exe",
+	".so",
+	".a",
+	".lib",
+	".pyc",
+	".pyo",
+	".pyd",
+	".swp",
+	".swo",
+	".class",
+	".DS_Store",
+	".git",
+	".hg",
+	".orig",
+})
+vim.opt.suffixesadd:append({ ".java", ".rs" }) -- search for suffexes using gf
+
+vim.opt.spelllang:append("cjk") -- disable spellchecking for asian characters (VIM algorithm does not support it)
+vim.opt.shortmess:append("c") -- don't show redundant messages from ins-completion-menu
+vim.opt.shortmess:append("I") -- don't show the default intro message
+vim.opt.whichwrap:append("<,>,[,],h,l")
