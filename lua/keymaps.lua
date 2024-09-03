@@ -18,6 +18,12 @@ keymap("n", "K", '<cmd>lua require("treesj").toggle({ split = { recursive = fals
 keymap("", "<C-j>", "5j")
 keymap("", "<C-k>", "5k")
 
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "scroll up and center" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "scroll down and center" })
+
+vim.keymap.set("n", "n", "nzzzv", { desc = "keep cursor centered" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "keep cursor centered" })
+
 -- 保存文件
 keymap("", "<C-s>", "<cmd>w<cr>")
 
