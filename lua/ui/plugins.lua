@@ -181,12 +181,12 @@ M.list = {
 			vim.opt.termguicolors = true
 			-- 删除buffer
 
-			keymap("n", "<<", ":BufferMovePrevious<cr>")
-			keymap("n", ">>", ":BufferMoveNext<cr>")
+			keymap("n", "<<", "<cmd>BufferMovePrevious<cr>")
+			keymap("n", ">>", "<cmd>BufferMoveNext<cr>")
 
 			-- -- 移动左右 buffer
-			keymap("n", "gn", ":BufferNext<CR>")
-			keymap("n", "gp", ":BufferPrevious<CR>")
+			keymap("n", "gn", "<cmd>BufferNext<CR>")
+			keymap("n", "gp", "<cmd>BufferPrevious<CR>")
 		end,
 		opts = {
 			auto_hide = 0,

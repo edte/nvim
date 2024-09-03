@@ -19,7 +19,7 @@ keymap("", "<C-j>", "5j")
 keymap("", "<C-k>", "5k")
 
 -- 保存文件
-keymap("", "<C-s>", ":w<cr>")
+keymap("", "<C-s>", "<cmd>w<cr>")
 
 -- 删除整行
 keymap("", "D", "Vd")
@@ -31,7 +31,7 @@ keymap("n", "c", '"_c')
 keymap("i", "jk", "<esc>")
 
 -- 按 esc 消除上一次的高亮
-keymap("n", "<esc>", ":noh<cr>")
+keymap("n", "<esc>", "<cmd>noh<cr>")
 
 vim.keymap.set("n", "<esc>", function()
 	cmd(":nohlsearch")
@@ -66,7 +66,7 @@ vim.keymap.set("n", "R", function()
 end, { expr = true })
 
 keymap("n", "<bs>", "<C-^>")
-keymap("", "gI", ":Glance implementations<cr>")
+keymap("", "gI", "<cmd>Glance implementations<cr>")
 keymap("", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>")
 keymap("", "gD", "<cmd>FzfLua lsp_declarations<cr>")
 keymap("", "gr", "<cmd>Glance references<cr>")
@@ -95,14 +95,14 @@ keymap("n", "s", "") -- 取消 s 默认功能
 -- 恢复
 -- set noscrollbind
 
-keymap("n", "sv", ":vsp<CR>") -- 水平分屏
-keymap("n", "sh", ":sp<CR>") -- 垂直分屏
+keymap("n", "sv", "<cmd>vsp<CR>") -- 水平分屏
+keymap("n", "sh", "<cmd>sp<CR>") -- 垂直分屏
 
 keymap("n", "sc", "<C-w>c") -- 关闭当前屏幕
 keymap("n", "so", "<C-w>o") -- 关闭其它屏幕
 
-keymap("n", "s,", ":vertical resize +20<CR>") -- 向右移动屏幕
-keymap("n", "s.", ":vertical resize -20<CR>") -- 向左移动屏幕
+keymap("n", "s,", "<cmd>vertical resize +20<CR>") -- 向右移动屏幕
+keymap("n", "s.", "<cmd>vertical resize -20<CR>") -- 向左移动屏幕
 
 keymap("n", "sm", "<C-w>|") -- 全屏
 keymap("n", "sn", "<C-w>=") -- 恢复全屏
