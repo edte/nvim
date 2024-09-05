@@ -2,10 +2,20 @@ local M = {}
 
 M.list = {
 
-	-- {
-	--   "morhetz/gruvbox",
-	--   config = function()
-	--     vim.cmd([[
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		config = function()
+			vim.cmd([[colorscheme tokyonight]])
+		end,
+	},
+
+	--    {
+	--        "morhetz/gruvbox",
+	--        config = function()
+	--            vim.cmd([[
 	-- "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 	-- "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 	-- "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -23,29 +33,29 @@ M.list = {
 	-- endif
 	--       ]])
 	--
-	--     vim.cmd([[colorscheme gruvbox]])
-	--   end,
+	--            vim.cmd([[colorscheme gruvbox]])
+	--        end,
+	--    },
+
+	-- {
+	-- 	"joshdick/onedark.vim",
+	-- 	config = function()
+	-- 		vim.cmd([[colorscheme onedark]])
+	-- 	end,
 	-- },
 
 	-- {
-	--   "joshdick/onedark.vim",
-	--   config = function()
-	--     vim.cmd([[colorscheme onedark]])
-	--   end,
+	-- 	"catppuccin/nvim",
+	-- 	config = function()
+	-- 		vim.cmd([[colorscheme catppuccin]])
+	-- 	end,
 	-- },
 
-	{
-		"catppuccin/nvim",
-		config = function()
-			vim.cmd([[colorscheme catppuccin]])
-		end,
-	},
-
 	-- {
-	--   "rebelot/kanagawa.nvim",
-	--   config = function()
-	--     vim.cmd([[colorscheme kanagawa]])
-	--   end,
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	config = function()
+	-- 		vim.cmd([[colorscheme kanagawa]])
+	-- 	end,
 	-- },
 
 	-- todo: 这里优化目录

@@ -3,33 +3,6 @@ local M = {}
 M.list = {
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = {
-			{
-				"williamboman/mason.nvim",
-				config = function()
-					require("mason").setup({})
-				end,
-				cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUninstallAll", "MasonLog" },
-				build = function()
-					pcall(function()
-						require("mason-registry").refresh()
-					end)
-				end,
-				event = "User FileOpened",
-				lazy = true,
-			},
-			{
-				"williamboman/mason-lspconfig.nvim",
-				lazy = true,
-				config = function()
-					require("mason-lspconfig").setup({
-						-- ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "clangd", "bashls", "jsonls" },
-						-- automatic_installation = true,
-					})
-				end,
-			},
-			{ "tamago324/nlsp-settings.nvim", cmd = "LspSettings", lazy = true },
-		},
 		config = function()
 			local m = try_require("lsp.lsp")
 			if m ~= nil then
@@ -37,6 +10,13 @@ M.list = {
 			end
 		end,
 	},
+
+	{
+		"tamago324/nlsp-settings.nvim",
+		cmd = "LspSettings",
+		lazy = true,
+	},
+
 	{
 		"nvimtools/none-ls.nvim",
 		config = function()
@@ -152,48 +132,48 @@ M.list = {
 
 	-- 上下文感知悬停提供程序的通用框架（类似于 vim.lsp.buf.hover ）。
 	-- 需要 Nvim v0.10.0
-	{
-		"lewis6991/hover.nvim",
-		config = function()
-			require("hover").setup({
-				init = function()
-					-- Require providers
-					require("hover.providers.lsp")
-					-- require('hover.providers.gh')
-					-- require('hover.providers.gh_user')
-					-- require('hover.providers.jira')
-					-- require('hover.providers.dap')
-					-- require('hover.providers.fold_preview')
-					-- require('hover.providers.diagnostic')
-					-- require('hover.providers.man')
-					-- require('hover.providers.dictionary')
-				end,
-				preview_opts = {
-					border = "single",
-				},
-				--             -- Whether the contents of a currently open hover window should be moved
-				--             -- to a :h preview-window when pressing the hover keymap.
-				preview_window = false,
-				title = true,
-				mouse_providers = {
-					"LSP",
-				},
-				mouse_delay = 1000,
-			})
-
-			-- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-			-- vim.keymap.set("n", "<C-p>", function()
-			-- 	require("hover").hover_switch("previous")
-			-- end, { desc = "hover.nvim (previous source)" })
-			-- vim.keymap.set("n", "<C-n>", function()
-			-- 	require("hover").hover_switch("next")
-			-- end, { desc = "hover.nvim (next source)" })
-
-			-- Mouse support
-			vim.keymap.set("n", "<MouseMove>", require("hover").hover_mouse, { desc = "hover.nvim (mouse)" })
-			vim.o.mousemoveevent = true
-		end,
-	},
+	-- {
+	-- 	"lewis6991/hover.nvim",
+	-- 	config = function()
+	-- 		require("hover").setup({
+	-- 			init = function()
+	-- 				-- Require providers
+	-- 				require("hover.providers.lsp")
+	-- 				-- require('hover.providers.gh')
+	-- 				-- require('hover.providers.gh_user')
+	-- 				-- require('hover.providers.jira')
+	-- 				-- require('hover.providers.dap')
+	-- 				-- require('hover.providers.fold_preview')
+	-- 				-- require('hover.providers.diagnostic')
+	-- 				-- require('hover.providers.man')
+	-- 				-- require('hover.providers.dictionary')
+	-- 			end,
+	-- 			preview_opts = {
+	-- 				border = "single",
+	-- 			},
+	-- 			--             -- Whether the contents of a currently open hover window should be moved
+	-- 			--             -- to a :h preview-window when pressing the hover keymap.
+	-- 			preview_window = false,
+	-- 			title = true,
+	-- 			mouse_providers = {
+	-- 				"LSP",
+	-- 			},
+	-- 			mouse_delay = 1000,
+	-- 		})
+	--
+	-- 		-- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+	-- 		-- vim.keymap.set("n", "<C-p>", function()
+	-- 		-- 	require("hover").hover_switch("previous")
+	-- 		-- end, { desc = "hover.nvim (previous source)" })
+	-- 		-- vim.keymap.set("n", "<C-n>", function()
+	-- 		-- 	require("hover").hover_switch("next")
+	-- 		-- end, { desc = "hover.nvim (next source)" })
+	--
+	-- 		-- Mouse support
+	-- 		vim.keymap.set("n", "<MouseMove>", require("hover").hover_mouse, { desc = "hover.nvim (mouse)" })
+	-- 		vim.o.mousemoveevent = true
+	-- 	end,
+	-- },
 
 	{
 		"folke/lazydev.nvim",
@@ -351,6 +331,13 @@ M.list = {
 		config = function()
 			require("auto-fix-return").setup({})
 		end,
+	},
+
+	-- 使用 ] r/[r 跳转到光标下项目的下一个 / 上一个 LSP 参考
+	{
+		"mawkler/refjump.nvim",
+		keys = { "]r", "[r" }, -- Uncomment to lazy load
+		opts = {},
 	},
 }
 
