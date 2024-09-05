@@ -339,6 +339,11 @@ M.list = {
 		keys = { "]r", "[r" }, -- Uncomment to lazy load
 		opts = {},
 	},
+
+	-- -- 适用于 Visual Studio Code、Neovim 和其他 LSP 客户端的源代码拼写检查器
+	-- {
+	-- 	"tekumara/typos-lsp",
+	-- },
 }
 
 return M

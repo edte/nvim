@@ -9,11 +9,11 @@
 
 -- 这段自动命令可以防止你在一个注释行中换行后，新行会继续注释的情况
 Autocmd({ "BufEnter" }, {
-	pattern = "*",
-	callback = function()
-		vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
-	end,
-	group = GroupId("comment_", { clear = true }),
+    pattern = "*",
+    callback = function()
+        vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+    end,
+    group = GroupId("comment_", { clear = true }),
 })
 
 -- 打开二进制文件
@@ -45,17 +45,17 @@ cmd([[
 
 -- tmux 状态栏和vim 状态栏同步
 Autocmd({ "VimLeavePre", "FocusLost", "VimSuspend" }, {
-	group = GroupId("tmux-status-on", { clear = true }),
-	callback = function()
-		vim.system({ "tmux", "set", "status", "on" }, {}, function() end)
-	end,
+    group = GroupId("tmux-status-on", { clear = true }),
+    callback = function()
+        vim.system({ "tmux", "set", "status", "on" }, {}, function() end)
+    end,
 })
 
 Autocmd({ "FocusGained", "VimResume" }, {
-	group = GroupId("tmux-status-off", { clear = true }),
-	callback = function()
-		vim.system({ "tmux", "set", "status", "off" }, {}, function() end)
-	end,
+    group = GroupId("tmux-status-off", { clear = true }),
+    callback = function()
+        vim.system({ "tmux", "set", "status", "off" }, {}, function() end)
+    end,
 })
 
 vim.system({ "tmux", "set", "status", "off" }, {}, function() end)
@@ -65,37 +65,38 @@ vim.system({ "tmux", "set", "status", "off" }, {}, function() end)
 local MAX_LEN = 64
 
 local function matchadd()
-	local column = vim.api.nvim_win_get_cursor(0)[2]
-	local line = vim.api.nvim_get_current_line()
-	local left = vim.fn.matchstr(line:sub(1, column + 1), [[\k*$]])
-	local right = vim.fn.matchstr(line:sub(column + 1), [[^\k*]]):sub(2)
-	local cursorword = left .. right
+    local column = vim.api.nvim_win_get_cursor(0)[2]
+    local line = vim.api.nvim_get_current_line()
+    local left = vim.fn.matchstr(line:sub(1, column + 1), [[\k*$]])
+    local right = vim.fn.matchstr(line:sub(column + 1), [[^\k*]]):sub(2)
+    local cursorword = left .. right
 
-	if cursorword == vim.w.cursorword then
-		return
-	end
+    if cursorword == vim.w.cursorword then
+        return
+    end
 
-	vim.w.cursorword = cursorword
+    vim.w.cursorword = cursorword
 
-	if vim.w.cursorword_id then
-		vim.fn.matchdelete(vim.w.cursorword_id)
-		vim.w.cursorword_id = nil
-	end
+    if vim.w.cursorword_id then
+        vim.fn.matchdelete(vim.w.cursorword_id)
+        vim.w.cursorword_id = nil
+    end
 
-	if cursorword == "" or #cursorword > MAX_LEN or cursorword:find("[\192-\255]+") ~= nil then
-		return
-	end
+    if cursorword == "" or #cursorword > MAX_LEN or cursorword:find("[\192-\255]+") ~= nil then
+        return
+    end
 
-	vim.w.cursorword_id = vim.fn.matchadd("CursorWord", [[\<]] .. cursorword .. [[\>]], -1)
+    -- TODO: 在help文档中会报错，待优化
+    vim.w.cursorword_id = vim.fn.matchadd("CursorWord", [[\<]] .. cursorword .. [[\>]], -1)
 end
 
 vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		vim.api.nvim_set_hl(0, "CursorWord", { underline = true })
-		matchadd()
-	end,
+    callback = function()
+        vim.api.nvim_set_hl(0, "CursorWord", { underline = true })
+        matchadd()
+    end,
 })
 
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-	callback = matchadd,
+    callback = matchadd,
 })
