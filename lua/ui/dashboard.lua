@@ -44,7 +44,7 @@ M.config = function()
 		dashboard.button("f", "     Find File ", "<cmd>lua project_files()<cr>"),
 		dashboard.button("n", "     New File ", "<cmd>ene!<CR>"),
 		dashboard.button("e", "     File Trees", "<cmd>lua ToggleMiniFiles()<CR>"),
-		dashboard.button("r", "     Recently Files", "<cmd>Telescope oldfiles<CR>"),
+		dashboard.button("r", "     Recently Files", "<cmd>FzfLua oldfiles<CR>"),
 		dashboard.button("t", "     Find Texts", "<cmd>FzfLua live_grep_native<CR>"),
 		dashboard.button("p", "     Plugins Status", "<cmd>Lazy<CR>"),
 		-- TODO: 这里现在是nwtree的进入，改成直接进入
