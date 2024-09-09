@@ -225,6 +225,33 @@ M.list = {
 			}
 		end,
 	},
+
+	-- Neovim 插件引入了新的操作员动作来快速替换和交换文本。
+	{
+		"gbprod/substitute.nvim",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		config = function()
+			require("substitute").setup()
+
+			-- s<motion>，将动作提供的文本对象替换为默认寄存器
+			keymap("n", "s", "<cmd>lua require('substitute').operator()<cr>")
+			keymap("n", "ss", "<cmd>lua require('substitute').line()<cr>")
+			keymap("n", "S", "<cmd>lua require('substitute').eol()<cr>")
+
+			-- sx{motion}，按两次即可交换，支持 .
+			-- sxc 取消
+			keymap("n", "sx", "<cmd>lua require('substitute.exchange').operator()<cr>")
+			keymap("n", "sxx", "<cmd>lua require('substitute.exchange').line()<cr>")
+			keymap("n", "sxc", "<cmd>lua require('substitute.exchange').cancel()<cr>")
+
+			keymap("x", "X", "<cmd>lua require('substitute.exchange').visual()<cr>")
+			keymap("x", "s", "<cmd>lua require('substitute').visual()<cr>")
+		end,
+	},
 }
 
 return M
