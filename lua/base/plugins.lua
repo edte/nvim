@@ -9,8 +9,6 @@ M.list = {
 		"folke/lazy.nvim",
 		tag = "stable",
 	},
-
-	{ "nvim-lua/plenary.nvim", cmd = { "PlenaryBustedFile", "PlenaryBustedDirectory" }, lazy = true },
 }
 
 return M

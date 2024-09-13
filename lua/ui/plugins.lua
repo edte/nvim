@@ -61,36 +61,28 @@ M.list = {
 	-- todo: 这里优化目录
 	-- Status Line
 	-- 状态栏
+	-- {
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	config = function()
+	-- 		try_require("ui.lualine").config()
+	-- 	end,
+	-- 	event = "VimEnter",
+	-- 	dependencies = {
+	-- 		{
+	-- 			"edte/lualine-ext",
+	-- 			event = "VimEnter",
+	-- 		},
+	-- 	},
+	-- },
+
 	{
-		"nvim-lualine/lualine.nvim",
+		dir = "ui.statusline",
 		config = function()
-			try_require("ui.lualine").config()
+			require("ui.statusline")
 		end,
-		event = "VimEnter",
-		dependencies = {
-			{
-				"edte/lualine-ext",
-				event = "VimEnter",
-			},
-		},
 	},
 
-	-- 类似mac圆角的statusbar，看以后怎么搞自己的lualine
-	-- {
-	-- 	"sschleemilch/slimline.nvim",
-	-- 	opts = {},
-	-- },
-
-	-- 类似 IDE 的面包屑，开箱即用,waybar
-	-- 不是很习惯用，还是习惯context
-	-- {
-	--   "Bekaboo/dropbar.nvim",
-	--   -- optional, but required for fuzzy finder support
-	--   dependencies = {
-	--     "nvim-telescope/telescope-fzf-native.nvim",
-	--   },
-	-- },
-
+	--
 	-- 符号树状视图,按 S
 	{
 		"hedyhli/outline.nvim",
@@ -168,40 +160,21 @@ M.list = {
 	{
 		"goolord/alpha-nvim",
 		event = "VimEnter",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			-- {"ibhagwan/fzf-lua",  cmd="FzfLua", lazy=true,}
-		},
 		requires = { "kyazdani42/nvim-web-devicons" },
 		config = function()
 			require("ui.dashboard").config()
 		end,
 	},
 
-	-- barbar.nvim 是一个选项卡插件
+	-- 迷你 bufferline
 	{
-		"romgrk/barbar.nvim",
-		ft = { "lua", "go", "cpp", "h" },
-		dependencies = {
-			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
-			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
-		},
-		init = function()
-			vim.g.barbar_auto_setup = false
-			vim.opt.termguicolors = true
-			-- 删除buffer
-
-			keymap("n", "<<", "<cmd>BufferMovePrevious<cr>")
-			keymap("n", ">>", "<cmd>BufferMoveNext<cr>")
-
-			-- -- 移动左右 buffer
-			keymap("n", "gn", "<cmd>BufferNext<CR>")
-			keymap("n", "gp", "<cmd>BufferPrevious<CR>")
+		"edte/mini.tabline",
+		version = false,
+		config = function()
+			require("mini.tabline").setup({})
+			keymap("n", "gn", "<cmd>bn<CR>")
+			keymap("n", "gp", "<cmd>bp<CR>")
 		end,
-		opts = {
-			auto_hide = 0,
-		},
-		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
 
 	-- Neovim 的缩进指南

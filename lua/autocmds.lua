@@ -100,3 +100,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
     callback = matchadd,
 })
+
+-- 在打开文件时跳转到上次编辑的位置
+vim.api.nvim_create_autocmd('BufReadPost', {
+    desc = 'Open file at the last position it was edited earlier',
+    group = GroupId('open-file-at-last-position', { clear = true }),
+    pattern = '*',
+    command = 'silent! normal! g`"zv'
+})

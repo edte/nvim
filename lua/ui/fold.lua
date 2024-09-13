@@ -147,13 +147,13 @@ M.config = function(_, opts)
 	vim.cmd([[set viewoptions-=curdir]])
 
 	-- remember folds
-	vim.cmd([[
-        augroup remember_folds
-        autocmd!
-        autocmd BufWinLeave *.* mkview
-        autocmd BufWinEnter *.* silent! loadview
-        augroup END
-        ]])
+	-- vim.cmd([[
+	--        augroup remember_folds
+	--        autocmd!
+	--        autocmd BufWinLeave *.* mkview
+	--        autocmd BufWinEnter *.* silent! loadview
+	--        augroup END
+	--        ]])
 end
 
 return M

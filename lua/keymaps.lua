@@ -153,3 +153,6 @@ cmd("silent!")
 
 -- cmd("nnoremap # *")
 -- cmd("nnoremap * #")
+
+keymap("n", "gw", "<cmd>FzfLua grep_cword<CR>")
+keymap("n", "gW", "<cmd>FzfLua grep_cWORD<CR>")

@@ -27,7 +27,6 @@ M.list = {
 		branch = "main",
 		dependencies = {
 			"nvim-web-devicons",
-			"nvim-telescope/telescope.nvim",
 		},
 		config = function()
 			require("bookmarks").setup({

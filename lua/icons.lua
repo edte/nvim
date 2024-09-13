@@ -1,4 +1,4 @@
-return {
+icons = {
 	kind = {
 		Array = "",
 		Boolean = "",
@@ -84,8 +84,8 @@ return {
 		Code = "",
 		Comment = "",
 		Dashboard = "",
-		DividerLeft = "",
-		DividerRight = "",
+		DividerLeft = "  ",
+		DividerRight = "  ",
 		DoubleChevronRight = "»",
 		Ellipsis = "",
 		EmptyFolder = "",
@@ -152,3 +152,5 @@ return {
 		CircuitBoard = "",
 	},
 }
+
+return icons

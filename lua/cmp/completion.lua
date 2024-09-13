@@ -292,7 +292,7 @@ function M.cmpConfig()
 		},
 	})
 
-	-- tabline 设置，一个ai补全的
+	-- tabnine 设置，一个ai补全的
 	local tabnine = try_require("cmp_tabnine.config")
 	if tabnine == nil then
 		return

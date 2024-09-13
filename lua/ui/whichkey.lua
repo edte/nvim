@@ -57,7 +57,7 @@ wk.add({
 	},
 	{
 		"<leader>C",
-		"<cmd>BufferCloseAllButCurrent<CR>",
+		"<cmd>%bd|e#|bd#<CR>",
 		desc = "Close Other Buffer",
 		nowait = true,
 		remap = false,
