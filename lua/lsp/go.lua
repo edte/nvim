@@ -9,12 +9,7 @@ M.goConfig = function()
     end
     go.setup()
 
-    -- gn生成返回值
-    -- keymap("", "gn", "<Cmd>GoGenReturn<cr>")
-    -- -- gt填充struct
-    -- keymap("", "gt", "<Cmd>GoFillStruct<cr>")
-
-    Create_cmd("GoAddTagEmpty", function()
+    Command("GoAddTagEmpty", function()
         vim.api.nvim_command(":GoAddTag json -add-options json=")
     end, { nargs = "*" })
 end

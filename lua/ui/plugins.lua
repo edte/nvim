@@ -94,7 +94,9 @@ M.list = {
 	{
 		"gelguy/wilder.nvim",
 		event = "CmdlineEnter", -- 懒加载：首次进入cmdline时载入
-		config = try_require("ui.wilder").wilderFunc,
+		config = function()
+			try_require("ui.wilder").config()
+		end,
 	},
 
 	-- buffer 管理文件与目录树的结合
@@ -165,16 +167,11 @@ M.list = {
 	{
 		"echasnovski/mini.indentscope",
 		version = false, -- wait till new 0.7.0 release to put it back on semver
-		opts = {
-			symbol = "│",
-			options = { try_as_border = true },
-		},
 		config = function()
 			require("mini.indentscope").setup({
 				draw = {
-
-					-- Symbol priority. Increase to display on top of more symbols.
 					priority = 2,
+					animation = require("mini.indentscope").gen_animation.none(),
 				},
 			})
 		end,
@@ -197,6 +194,9 @@ M.list = {
 				callback = function()
 					vim.b.miniindentscope_disable = true
 				end,
+			})
+			require("mini.indentscope").setup({
+				symbol = "│",
 			})
 		end,
 	},

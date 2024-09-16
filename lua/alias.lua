@@ -42,7 +42,7 @@ function keymap(mode, lhs, rhs)
 	vim.api.nvim_set_keymap(mode, lhs, rhs, opt)
 end
 
-Create_cmd = vim.api.nvim_create_user_command
+Command = vim.api.nvim_create_user_command
 
 cmd = vim.cmd
 

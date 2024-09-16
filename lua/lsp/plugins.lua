@@ -20,8 +20,7 @@ M.list = {
 	{
 		"nvimtools/none-ls.nvim",
 		config = function()
-			local null_ls = require("null-ls")
-			require("lsp.format").formatConfig()
+			require("lsp.format").config()
 		end,
 	},
 
@@ -309,19 +308,13 @@ M.list = {
 	-- go 插件
 	{
 		"ray-x/go.nvim",
-		dependencies = { -- optional packages
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-		},
 		config = function()
 			local r = try_require("lsp.go")
 			if r ~= nil then
 				r.goConfig()
 			end
 		end,
-
-		ft = { "go", "gomod" },
-		build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
+		event = { "CmdlineEnter" },
 	},
 
 	-- Neovim 插件可在您键入时自动添加或删除 Go 函数返回括号

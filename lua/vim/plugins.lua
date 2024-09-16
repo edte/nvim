@@ -254,6 +254,15 @@ M.list = {
 			keymap("x", "s", "<cmd>lua require('substitute').visual()<cr>")
 		end,
 	},
+
+	-- 高亮行尾空格，方便格式化
+	{
+		"echasnovski/mini.trailspace",
+		version = false,
+		config = function()
+			require("mini.trailspace").setup()
+		end,
+	},
 }
 
 return M

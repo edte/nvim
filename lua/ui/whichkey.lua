@@ -2,13 +2,12 @@
 
 local wk = require("which-key")
 
-local utils = require("telescope.utils")
 _G.project_files = function()
-	local _, ret, _ = utils.get_os_command_output({ "git", "rev-parse", "--is-inside-work-tree" })
-	if ret == 0 then
-		require("fzf-lua").git_files()
-	else
+	local ret = vim.fn.system("git rev-parse --show-toplevel 2> /dev/null")
+	if ret == "" then
 		require("fzf-lua").files()
+	else
+		require("fzf-lua").git_files()
 	end
 end
 
@@ -128,13 +127,6 @@ wk.add({
 		remap = false,
 	},
 	{
-		"<leader>lS",
-		"<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-		desc = "Workspace Symbols",
-		nowait = true,
-		remap = false,
-	},
-	{
 		"<leader>la",
 		"<cmd>lua vim.lsp.buf.code_action()<cr>",
 		desc = "Code Action",
@@ -143,15 +135,15 @@ wk.add({
 	},
 	{
 		"<leader>ld",
-		"<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>",
+		"<cmd>FzfLua diagnostics_document<cr>",
 		desc = "Buffer Diagnostics",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>le",
-		"<cmd>Telescope quickfix<cr>",
-		desc = "Telescope Quickfix",
+		"<cmd>FzfLua quickfix<cr>",
+		desc = "FzfLua Quickfix",
 		nowait = true,
 		remap = false,
 	},
@@ -206,14 +198,14 @@ wk.add({
 	},
 	{
 		"<leader>ls",
-		"<cmd>Telescope lsp_document_symbols<cr>",
+		"<cmd>FzfLua lsp_document_symbols<cr>",
 		desc = "Document Symbols",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>lw",
-		"<cmd>Telescope diagnostics<cr>",
+		"<cmd>FzfLua diagnostics_workspace<cr>",
 		desc = "Diagnostics",
 		nowait = true,
 		remap = false,
@@ -234,7 +226,7 @@ wk.add({
 	},
 	{
 		"<leader>r",
-		"<cmd>Telescope oldfiles<CR>",
+		"<cmd>FzfLua oldfiles<CR>",
 		desc = "recents",
 		nowait = true,
 		remap = false,
@@ -249,21 +241,21 @@ wk.add({
 	},
 	{
 		"<leader>sH",
-		"<cmd>Telescope highlights<cr>",
+		"<cmd>FzfLua highlights<cr>",
 		desc = "Find highlight groups",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>sM",
-		"<cmd>Telescope man_pages<cr>",
+		"<cmd>FzfLua man_pages<cr>",
 		desc = "Man Pages",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>sR",
-		"<cmd>Telescope registers<cr>",
+		"<cmd>FzfLua registers<cr>",
 		desc = "Registers",
 		nowait = true,
 		remap = false,
@@ -277,21 +269,21 @@ wk.add({
 	},
 	{
 		"<leader>sc",
-		"<cmd>Telescope commands<cr>",
+		"<cmd>FzfLua commands<cr>",
 		desc = "Commands",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>sf",
-		"<cmd>Telescope find_files<cr>",
+		"<cmd>FzfLua files<cr>",
 		desc = "Find File",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>sh",
-		"<cmd>Telescope help_tags<cr>",
+		"<cmd>FzfLua helptags<cr>",
 		desc = "Find Help",
 		nowait = true,
 		remap = false,
@@ -305,14 +297,14 @@ wk.add({
 	},
 	{
 		"<leader>sr",
-		"<cmd>Telescope oldfiles<cr>",
+		"<cmd>FzfLua oldfiles<cr>",
 		desc = "Open Recent File",
 		nowait = true,
 		remap = false,
 	},
 	{
 		"<leader>st",
-		"<cmd>Telescope live_grep<cr>",
+		"<cmd>FzfLua live_grep<cr>",
 		desc = "Text",
 		nowait = true,
 		remap = false,

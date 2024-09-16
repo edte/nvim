@@ -27,19 +27,19 @@ M.config = function()
     vim.api.nvim_set_hl(0, "HG_TODO_LIST_NOTE", { bold = true, bg = "#4fd6be", fg = "#222436" })
     vim.api.nvim_set_hl(0, "HG_TODO_LIST_TODO", { bold = true, bg = "#0db9d7", fg = "#222436" })
 
-    Create_cmd("TODO", function()
+    Command("TODO", function()
         require("fzf-lua").grep({ search = "TODO:", no_esc = true })
     end, { nargs = "*" })
 
-    Create_cmd("WARN", function()
+    Command("WARN", function()
         require("fzf-lua").grep({ search = "TODO:", no_esc = true })
     end, { nargs = "*" })
 
-    Create_cmd("FIX", function()
+    Command("FIX", function()
         require("fzf-lua").grep({ search = "FIX:", no_esc = true })
     end, { nargs = "*" })
 
-    Create_cmd("NOTE", function()
+    Command("NOTE", function()
         require("fzf-lua").grep({ search = "NOTE:", no_esc = true })
     end, { nargs = "*" })
 

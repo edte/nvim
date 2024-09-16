@@ -33,7 +33,7 @@ M.list = {
 	},
 	{
 		"Snikimonkd/cmp-go-pkgs",
-		event = { "InsertEnter go" },
+		event = { "InsertEnter *.go" },
 	},
 
 	-- 单词补全
@@ -45,7 +45,7 @@ M.list = {
 	-- nvim lua  源
 	{
 		"hrsh7th/cmp-nvim-lua",
-		event = { "InsertEnter lua" },
+		event = { "InsertEnter *.lua" },
 	},
 
 	-- TabNine ai 补全

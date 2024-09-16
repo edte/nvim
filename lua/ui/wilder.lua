@@ -1,6 +1,6 @@
 local M = {}
 
-M.wilderFunc = function()
+M.config = function()
 	local wilder = try_require("wilder")
 	if wilder == nil then
 		return

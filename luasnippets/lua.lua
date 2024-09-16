@@ -42,7 +42,7 @@ cmd([[
 ]])
 
 -- 如果你安装了诸如 neotree 或 nvim-tree 这种大纲性质的插件并且它们被打开时，那么你可能希望在当前缓冲区删除的时候不会影响到现有的窗口布局。上面的自动命令 BUfferDelete 很好的完成了这件事。所以，再见 bufdelete.nvim 插件，该命令灵感来源于 NvChad 的早期版本。
-Create_cmd("BufferDelete", function()
+Command("BufferDelete", function()
   ---@diagnostic disable-next-line: missing-parameter
   local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
   local modified = vim.api.nvim_buf_get_option(0, "modified")
