@@ -46,51 +46,6 @@ M.config = function()
                 return true
             end,
         },
-        -- refactor = {
-        -- 	-- -- 高亮显示光标下当前符号的定义和用法。
-        -- 	-- highlight_definitions = {
-        -- 	-- 	enable = true,
-        -- 	-- 	-- Set to false if you have an `updatetime` of ~100.
-        -- 	-- 	clear_on_cursor_move = true,
-        -- 	-- },
-        --
-        -- 	-- 强调块从目前的范围在哪里的光标。
-        -- 	-- highlight_current_scope = { enable = true },
-        --
-        -- 	-- 重命名当前作用域（和当前文件）内光标下的符号。
-        -- 	smart_rename = {
-        -- 		enable = true,
-        -- 		-- Assign keymaps to false to disable them, e.g. `smart_rename = false`.
-        -- 		keymaps = {
-        -- 			-- smart_rename = "gm",
-        -- 			-- smart_rename = false,
-        -- 		},
-        -- 	},
-        --
-        -- 	-- 为光标下的符号提供 "转到定义"，并列出当前文件中的定义。
-        -- 	-- 如果 nvim-treesitter 无法解析变量，则使用 vim.lsp.buf.definition 代替下面配置中的 goto_definition_lsp_fallback。
-        -- 	-- goto_next_usage/goto_previous_usage 将转到光标下标识符的下一个用法。
-        -- 	navigation = {
-        -- 		enable = true,
-        -- 		-- Assign keymaps to false to disable them, e.g. `goto_definition = false`.
-        -- 		keymaps = {
-        -- 			goto_definition = false,
-        -- 			list_definitions = false,
-        -- 			list_definitions_toc = false,
-        -- 			goto_next_usage = false,
-        -- 			goto_previous_usage = false,
-        -- 		},
-        -- 	},
-        -- },
-        textsubjects = {
-            enable = true,
-            prev_selection = ",",
-            keymaps = {
-                ["."] = "textsubjects-smart",
-                [";"] = "textsubjects-container-outer",
-                ["i;"] = "textsubjects-container-inner",
-            },
-        },
         -- gf 跳函数开头
         textobjects = {
             -- 文本对象：移动
@@ -147,26 +102,6 @@ M.config = function()
         matchup = {
             enable = true, -- mandatory, false will disable the whole extension
         },
-
-        -- pair
-        -- pairs = {
-        -- 	enable = true,
-        -- 	disable = {},
-        -- 	highlight_pair_events = {}, -- e.g. {"CursorMoved"}, -- when to highlight the pairs, use {} to deactivate highlighting
-        -- 	highlight_self = false, -- whether to highlight also the part of the pair under cursor (or only the partner)
-        -- 	goto_right_end = false, -- whether to go to the end of the right partner or the beginning
-        -- 	fallback_cmd_normal = "call matchit#Match_wrapper('',1,'n')", -- What command to issue when we can't find a pair (e.g. "normal! %")
-        -- 	keymaps = {
-        -- 		goto_partner = "<leader>%",
-        -- 		delete_balanced = "X",
-        -- 	},
-        -- 	delete_balanced = {
-        -- 		only_on_first_char = false, -- whether to trigger balanced delete when on first character of a pair
-        -- 		fallback_cmd_normal = nil, -- fallback command when no pair found, can be nil
-        -- 		longest_partner = false, -- whether to delete the longest or the shortest pair when multiple found.
-        -- 		-- E.g. whether to delete the angle bracket or whole tag in  <pair> </pair>
-        -- 	},
-        -- },
     })
 
     local context = try_require("treesitter-context")

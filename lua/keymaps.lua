@@ -12,9 +12,7 @@ keymap("n", "}", "}w")
 keymap("n", "}", "}j")
 cmd("nnoremap <expr><silent> { (col('.')==1 && len(getline(line('.')-1))==0? '2{j' : '{j')")
 
-keymap("n", "K", '<cmd>lua require("treesj").toggle({ split = { recursive = false } })<CR>')
-
--- -- 上下滚动浏览
+-- 上下滚动浏览
 keymap("", "<C-j>", "5j")
 keymap("", "<C-k>", "5k")
 
@@ -40,11 +38,11 @@ keymap("i", "jk", "<esc>")
 keymap("n", "<esc>", "<cmd>noh<cr>")
 
 vim.keymap.set("n", "<esc>", function()
-	cmd(":nohlsearch")
-	if isModuleAvailable("clever-f") then
-		cmd(":call clever_f#reset()")
-		return
-	end
+    cmd(":nohlsearch")
+    if isModuleAvailable("clever-f") then
+        cmd(":call clever_f#reset()")
+        return
+    end
 end, { desc = "esc", noremap = true, buffer = true })
 
 -- 大小写转换
@@ -68,7 +66,7 @@ keymap("n", "<c-n>", "<cmd>lua vim.diagnostic.goto_next()<cr>") -- next error
 -- keymap("n", "R", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 vim.keymap.set("n", "R", function()
-	return ":IncRename " .. vim.fn.expand("<cword>")
+    return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
 keymap("n", "<bs>", "<C-^>")
@@ -101,20 +99,20 @@ keymap("n", "s", "") -- 取消 s 默认功能
 -- 恢复
 -- set noscrollbind
 
-keymap("n", "sv", "<cmd>vsp<CR>") -- 水平分屏
-keymap("n", "sh", "<cmd>sp<CR>") -- 垂直分屏
+keymap("n", "sv", "<cmd>vsp<CR>")                 -- 水平分屏
+keymap("n", "sh", "<cmd>sp<CR>")                  -- 垂直分屏
 
-keymap("n", "sc", "<C-w>c") -- 关闭当前屏幕
-keymap("n", "so", "<C-w>o") -- 关闭其它屏幕
+keymap("n", "sc", "<C-w>c")                       -- 关闭当前屏幕
+keymap("n", "so", "<C-w>o")                       -- 关闭其它屏幕
 
 keymap("n", "s,", "<cmd>vertical resize +20<CR>") -- 向右移动屏幕
 keymap("n", "s.", "<cmd>vertical resize -20<CR>") -- 向左移动屏幕
 
-keymap("n", "sm", "<C-w>|") -- 全屏
-keymap("n", "sn", "<C-w>=") -- 恢复全屏
+keymap("n", "sm", "<C-w>|")                       -- 全屏
+keymap("n", "sn", "<C-w>=")                       -- 恢复全屏
 
-keymap("n", "<a-,>", "<C-w>h") -- 移动到左分屏
-keymap("n", "<a-.>", "<C-w>l") -- 移动到右分屏
+keymap("n", "<a-,>", "<C-w>h")                    -- 移动到左分屏
+keymap("n", "<a-.>", "<C-w>l")                    -- 移动到右分屏
 
 -- 窗口切换
 keymap("n", "<left>", "<c-w>h")
@@ -126,14 +124,14 @@ keymap("", "<c-l>", "<c-w>l")
 
 -- kitty 终端区分 c-i 和 tab
 if vim.env.TERM == "xterm-kitty" then
-	vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
-	vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
-	vim.cmd("nnoremap <c-i> <c-i>")
-	vim.cmd("nnoremap <ESC>[105;5u <C-I>")
-	vim.cmd("nnoremap <Tab>        %")
-	vim.cmd("noremap  <ESC>[88;5u  :!echo B<CR>")
-	vim.cmd("noremap  <ESC>[49;5u  :!echo C<CR>")
-	vim.cmd("noremap  <ESC>[1;5P   :!echo D<CR>")
+    vim.cmd([[autocmd UIEnter * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[>1u") | endif]])
+    vim.cmd([[autocmd UILeave * if v:event.chan ==# 0 | call chansend(v:stderr, "\x1b[<1u") | endif]])
+    vim.cmd("nnoremap <c-i> <c-i>")
+    vim.cmd("nnoremap <ESC>[105;5u <C-I>")
+    vim.cmd("nnoremap <Tab>        %")
+    vim.cmd("noremap  <ESC>[88;5u  :!echo B<CR>")
+    vim.cmd("noremap  <ESC>[49;5u  :!echo C<CR>")
+    vim.cmd("noremap  <ESC>[1;5P   :!echo D<CR>")
 end
 
 -- 交换 : ;

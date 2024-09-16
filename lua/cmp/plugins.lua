@@ -90,13 +90,14 @@ M.list = {
 		ft = { "lua", "go", "cpp" },
 	},
 
-	-- Autopairs
-	-- 用 lua 编写的 Neovim 自动配对
+	-- Neovim Lua 插件自动管理字符对。 “mini.nvim” 库的一部分。
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		"echasnovski/mini.pairs",
+		event = { "InsertEnter" },
+		version = false,
+		config = function()
+			require("mini.pairs").setup()
+		end,
 	},
 }
 
