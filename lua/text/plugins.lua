@@ -140,6 +140,16 @@ M.list = {
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	-- 	event = { "FileReadPre", "BufReadPre", "User FileOpened" },
 	-- },
+
+	-- Telescope 扩展提供了有关通过lazy.nvim 安装的插件的便捷功能
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = "tsakirist/telescope-lazy.nvim",
+	},
+
+	-- {
+	-- 	url = "https://github.com/roginfarrer/fzf-lua-lazy.nvim.git",
+	-- },
 }
 
 return M

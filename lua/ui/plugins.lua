@@ -58,23 +58,7 @@ M.list = {
 	-- 	end,
 	-- },
 
-	-- todo: 这里优化目录
-	-- Status Line
-	-- 状态栏
-	-- {
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	config = function()
-	-- 		try_require("ui.lualine").config()
-	-- 	end,
-	-- 	event = "VimEnter",
-	-- 	dependencies = {
-	-- 		{
-	-- 			"edte/lualine-ext",
-	-- 			event = "VimEnter",
-	-- 		},
-	-- 	},
-	-- },
-
+	-- 自定义状态栏
 	{
 		dir = "ui.statusline",
 		config = function()

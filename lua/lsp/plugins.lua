@@ -344,6 +344,15 @@ M.list = {
 	-- {
 	-- 	"tekumara/typos-lsp",
 	-- },
+
+	-- Neovim 中的 AI 聊天机器人无需 API 密钥
+	{
+		"RayenMnif/tgpt.nvim",
+		cmd = { "Chat", "RateMyCode" },
+		config = function()
+			require("tgpt").setup()
+		end,
+	},
 }
 
 return M
