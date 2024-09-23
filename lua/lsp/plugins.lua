@@ -11,17 +11,23 @@ M.list = {
 		end,
 	},
 
+	-- 适用于 Neovim 的轻量级但功能强大的格式化程序插件
 	{
-		"tamago324/nlsp-settings.nvim",
-		cmd = "LspSettings",
-		lazy = true,
-	},
-
-	{
-		"nvimtools/none-ls.nvim",
-		config = function()
-			require("lsp.format").config()
-		end,
+		"stevearc/conform.nvim",
+		event = { "BufWritePre" },
+		cmd = { "ConformInfo" },
+		opts = {
+			formatters_by_ft = {
+				lua = { "stylua" },
+				go = { "goimports-reviser" },
+				-- cargo install sleek
+				sql = { "sleek" },
+				json = { "jq" },
+			},
+			format_on_save = {
+				timeout_ms = 200,
+			},
+		},
 	},
 
 	-- lsp_lines 是一个简单的 neovim 插件，它使用真实代码行之上的虚拟行来呈现诊断。
@@ -128,51 +134,6 @@ M.list = {
 			})
 		end,
 	},
-
-	-- 上下文感知悬停提供程序的通用框架（类似于 vim.lsp.buf.hover ）。
-	-- 需要 Nvim v0.10.0
-	-- {
-	-- 	"lewis6991/hover.nvim",
-	-- 	config = function()
-	-- 		require("hover").setup({
-	-- 			init = function()
-	-- 				-- Require providers
-	-- 				require("hover.providers.lsp")
-	-- 				-- require('hover.providers.gh')
-	-- 				-- require('hover.providers.gh_user')
-	-- 				-- require('hover.providers.jira')
-	-- 				-- require('hover.providers.dap')
-	-- 				-- require('hover.providers.fold_preview')
-	-- 				-- require('hover.providers.diagnostic')
-	-- 				-- require('hover.providers.man')
-	-- 				-- require('hover.providers.dictionary')
-	-- 			end,
-	-- 			preview_opts = {
-	-- 				border = "single",
-	-- 			},
-	-- 			--             -- Whether the contents of a currently open hover window should be moved
-	-- 			--             -- to a :h preview-window when pressing the hover keymap.
-	-- 			preview_window = false,
-	-- 			title = true,
-	-- 			mouse_providers = {
-	-- 				"LSP",
-	-- 			},
-	-- 			mouse_delay = 1000,
-	-- 		})
-	--
-	-- 		-- vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
-	-- 		-- vim.keymap.set("n", "<C-p>", function()
-	-- 		-- 	require("hover").hover_switch("previous")
-	-- 		-- end, { desc = "hover.nvim (previous source)" })
-	-- 		-- vim.keymap.set("n", "<C-n>", function()
-	-- 		-- 	require("hover").hover_switch("next")
-	-- 		-- end, { desc = "hover.nvim (next source)" })
-	--
-	-- 		-- Mouse support
-	-- 		vim.keymap.set("n", "<MouseMove>", require("hover").hover_mouse, { desc = "hover.nvim (mouse)" })
-	-- 		vim.o.mousemoveevent = true
-	-- 	end,
-	-- },
 
 	{
 		"folke/lazydev.nvim",
