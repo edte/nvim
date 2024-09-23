@@ -1,8 +1,13 @@
--- require("base.mini")
+local requires = {
+    -- "base.mini",
+    "alias",
+    "options",
+    "autocmds",
+    "commands",
+    "keymaps",
+    "lazys",
+}
 
-require("alias")
-require("options")
-require("autocmds")
-require("commands")
-require("keymaps")
-require("lazys")
+for _, r in ipairs(requires) do
+    require(r)
+end

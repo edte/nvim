@@ -10,6 +10,10 @@ M.list = {
         config = function()
             vim.cmd([[colorscheme tokyonight]])
         end,
+
+        dependencies = {
+            { "nvim-treesitter/nvim-treesitter"},
+        }, 
     },
 
     --    {
@@ -290,7 +294,7 @@ M.list = {
             require("statuscol").setup({
                 -- relculright = true,
                 segments = {
-                    -- 书签
+                    -- marks
                     { sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = false } },
                     -- 行号
                     { text = { builtin.lnumfunc } },

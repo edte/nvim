@@ -26,6 +26,8 @@ M.list = {
                 sql = { "sleek" },
                 json = { "jq" },
                 cpp = { lsp_format = "never" },
+                zsh = { "shfmt", lsp_format = "never" },
+                bash = { "shfmt", lsp_format = "never" },
             },
             format_on_save = {
                 timeout_ms = 200,
