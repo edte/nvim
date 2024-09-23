@@ -310,6 +310,13 @@ wk.add({
 		remap = false,
 	},
 	{
+		"<leader>sp",
+		'<cmd>lua require("fzf-lua-lazy").search()<cr>',
+		desc = "plugins",
+		nowait = true,
+		remap = false,
+	},
+	{
 		"<leader>t",
 		"<cmd>FzfLua live_grep_native<CR>",
 		desc = "text",
