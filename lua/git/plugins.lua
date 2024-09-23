@@ -55,18 +55,16 @@ M.list = {
         config = true,
     },
 
-    -- normal mode提供Git/G 命令
-    {
-        "tpope/vim-fugitive",
-        cmd = { "Git", "G" },
-    },
 
     {
         "echasnovski/mini-git",
         version = false,
         main = "mini.git",
+        cmd = { "Git" },
         config = function()
             require("mini.git").setup()
+
+            -- local rhs = "<Cmd>lua require('mini.git').show_at_cursor()<CR>"
         end,
     },
 
