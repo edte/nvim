@@ -124,6 +124,9 @@ M.list = {
 				"<space>e",
 				function()
 					local mf = try_require("mini.files")
+					if mf == nil then
+						return
+					end
 					if not mf.close() then
 						mf.open(vim.api.nvim_buf_get_name(0))
 						mf.reveal_cwd()
