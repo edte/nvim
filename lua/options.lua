@@ -57,7 +57,6 @@ local default_options = {
 	splitright = true, -- force all vertical splits to go to the right of current window
 	swapfile = false, -- creates a swapfile
 	termguicolors = true, -- set term gui colors (most terminals support this)
-	timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
 	title = true, -- set the title of window to the value of the titlestring
 	-- opt.titlestring = "%<%F%=%l/%L - nvim" -- what the title of the window will be set to
 	-- undodir = undodir, -- set an undo directory
@@ -78,6 +77,9 @@ local default_options = {
 	showcmd = false,
 	ruler = false,
 	laststatus = 3,
+	ttimeoutlen = 100,
+	timeoutlen = 100,
+	ttimeout = true,
 }
 
 for k, v in pairs(default_options) do

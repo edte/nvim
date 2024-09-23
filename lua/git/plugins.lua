@@ -42,15 +42,15 @@ M.list = {
     -- [ x — 移至下一个冲突
     {
         "akinsho/git-conflict.nvim",
-        -- cmd = {
-        -- 	"GitConflictChooseOurs",
-        -- 	"GitConflictChooseTheirs",
-        -- 	"GitConflictChooseBoth",
-        -- 	"GitConflictChooseNone",
-        -- 	"GitConflictNextConflict",
-        -- 	"GitConflictPrevConflict",
-        -- 	"GitConflictListQf",
-        -- },
+        cmd = {
+            "GitConflictChooseOurs",
+            "GitConflictChooseTheirs",
+            "GitConflictChooseBoth",
+            "GitConflictChooseNone",
+            "GitConflictNextConflict",
+            "GitConflictPrevConflict",
+            "GitConflictListQf",
+        },
         version = "*",
         config = true,
     },
@@ -59,6 +59,15 @@ M.list = {
     {
         "tpope/vim-fugitive",
         cmd = { "Git", "G" },
+    },
+
+    {
+        "echasnovski/mini-git",
+        version = false,
+        main = "mini.git",
+        config = function()
+            require("mini.git").setup()
+        end,
     },
 
     -- lua MiniDiff.toggle_overlay()
