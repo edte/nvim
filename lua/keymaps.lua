@@ -154,3 +154,4 @@ cmd("silent!")
 
 keymap("n", "gw", "<cmd>FzfLua grep_cword<CR>")
 keymap("n", "gW", "<cmd>FzfLua grep_cWORD<CR>")
+-- keymap("n", "gr", "<cmd>FzfLua resume<CR>")
