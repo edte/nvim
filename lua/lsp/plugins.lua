@@ -28,6 +28,7 @@ M.list = {
                 cpp = { lsp_format = "never" },
                 zsh = { "shfmt", lsp_format = "never" },
                 bash = { "shfmt", lsp_format = "never" },
+                toml = { "taplo", lsp_format = "never" },
             },
             format_on_save = {
                 timeout_ms = 200,
