@@ -18,20 +18,52 @@ M.list = {
         },
     },
 
+
+
+    -- mark，显示和标记删除
+    -- TODO: 集成默认大写mark
+    {
+        dir = "bookmark.mark",
+        config = function()
+            require("bookmark.mark").setup()
+        end,
+        init = function()
+            -- 默认将小写mark变成大写，小写谁用啊
+            -- Use lowercase for global marks and uppercase for local marks.
+            local low = function(i)
+                return string.char(97 + i)
+            end
+            local upp = function(i)
+                return string.char(65 + i)
+            end
+
+            -- 所有vim自带的mark都默认为大写
+            for i = 0, 25 do
+                if i ~= 3 and i ~= 12 and i ~= 14 then
+                    -- print(i, low(i))
+                    vim.keymap.set("n", "m" .. low(i), "m" .. upp(i))
+                end
+            end
+            for i = 0, 25 do
+                if i ~= 3 and i ~= 12 and i ~= 14 then
+                    vim.keymap.set("n", "'" .. low(i), "'" .. upp(i))
+                end
+            end
+        end
+    },
+
     -- 命名书签
     -- echo stdpath("data")
     -- /Users/edte/.local/share/lvim
     -- ~/.local/share/nvim/bookmarks/
     {
         "edte/bookmarks.nvim",
-        -- keys = { "mm", "mo", "mD" },
         branch = "main",
         dependencies = {
             "nvim-web-devicons",
         },
         init = function()
             keymap("n", "mm", function()
-                print("test")
                 require 'bookmarks'.add_bookmarks(false)
             end)
             keymap("n", "mo", "<cmd>lua require'bookmarks'.list_bookmarks_fzflua()<cr>")
@@ -51,15 +83,6 @@ M.list = {
         end,
     },
 
-
-    -- mark，显示和标记删除
-    -- TODO: 集成默认大写mark
-    {
-        dir = "bookmark.mark",
-        config = function()
-            require("bookmark.mark").setup()
-        end
-    }
 
     -- Neovim 的小型自动化会话管理器
     -- 当不带参数启动 nvim 时，AutoSession 将尝试恢复当前 cwd 的现有会话（如果存在）。

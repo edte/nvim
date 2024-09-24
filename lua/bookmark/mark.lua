@@ -244,7 +244,7 @@ end
 
 function Mark.setup()
     -- 设置快捷键
-    keymap("n", "m", Mark.place_mark_cursor)
+    -- keymap("n", "m", Mark.place_mark_cursor)
     keymap("n", "md", Mark.delete_line_marks)
 
     local augroup = GroupId("Marks_autocmds", { clear = true })
